@@ -68,7 +68,7 @@ Precision: TP/(TP+FP) = 80.1% (86.7%)
 F1 score: 2TP/(2TP+FP+FN) = 31.6% (60.3%)  
 
 ## Summary table
-Expanded Table 2 of Chu *et al.*, *Bioinformatics* 2017 (https://doi.org/10.1093/bioinformatics/btw811), rows *MHAP (default)* and *kd* added. Summary: kd is less sensitive – by design – but as precise. Exhaustive overlap detection is no requirement for a single-contig assembly!
+Expanded Table 2 of Chu *et al.*, *Bioinformatics* 2017 (https://doi.org/10.1093/bioinformatics/btw811), rows *MHAP (default)* and *kd* added. Summary: kd is less sensitive – by design – but as precise. An exhaustive overlap search is no requirement for a single-contig genome assembly!
 
 |  | PB ||| ONT |||
 |---|---|---|---|---|---|---|
