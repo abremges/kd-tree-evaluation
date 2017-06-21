@@ -50,12 +50,18 @@ P = `wc -l < ont.fasta.bam.bed.self.tsv` = 3117258
 TP = `comm -12 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv | wc -l` = 1360726  
 FP = `comm -23 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv | wc -l` = 204942  
 FN = `comm -13 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv | wc -l` = 1756532  
+Sensitivity: 43.7%  
+Precision: 86.9%  
+F1 score: 58.1%  
 
 ### PB
-P = `wc -l < pacbio.fasta.bam.bed.self.tsv` =   
+P = `wc -l < pacbio.fasta.bam.bed.self.tsv` = 11085073  
 TP = `comm -12 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv | wc -l` = 2179694  
 FP = `comm -23 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv | wc -l` = 540605  
 FN = `comm -13 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv | wc -l` = 8905379  
+Sensitivity: 19.7%  
+Precision: 80.1%  
+F1 score: 31.6%  
 
 ### Resulting table
 Compare with Table 2 in Chu *et al.*, *Bioinformatics* 2017: https://doi.org/10.1093/bioinformatics/btw811
@@ -68,4 +74,4 @@ Compare with Table 2 in Chu *et al.*, *Bioinformatics* 2017: https://doi.org/10.
 | MHAP | 79.8 | 79.8 | 79.8 | 91.2 | 82.0 | 86.3 |
 | GraphMap | 71.7 | 94.0 | 81.4 | 90.6 | 93.4 | 92.0 |
 | Minimap | 59.6 | 83.8 | 69.7 | 91.2 | 95.4 | 93.2 |
-| kd |  |  |  |  |  |  |
+| kd | 19.7 | 80.1 | 31.6 | 43.7 | 86.9 | 58.1 |
