@@ -64,7 +64,7 @@ Precision: 80.1%
 F1 score: 31.6%  
 
 ### Resulting table
-Compare with Table 2 in Chu *et al.*, *Bioinformatics* 2017: https://doi.org/10.1093/bioinformatics/btw811
+Expand Table 2 of Chu *et al.*, *Bioinformatics* 2017: https://doi.org/10.1093/bioinformatics/btw811
 
 |  | PB P6-C4 E.coli ||| ONT SQK-MAP-006 E.coli |||
 |----------|-------------------------------|-----------|--------|------------------------|-----------|--------|
@@ -75,3 +75,5 @@ Compare with Table 2 in Chu *et al.*, *Bioinformatics* 2017: https://doi.org/10.
 | GraphMap | 71.7 | 94.0 | 81.4 | 90.6 | 93.4 | 92.0 |
 | Minimap | 59.6 | 83.8 | 69.7 | 91.2 | 95.4 | 93.2 |
 | kd | 19.7 | 80.1 | 31.6 | 43.7 | 86.9 | 58.1 |
+
+In summary: less sensitive (by design) but comparable precision.
