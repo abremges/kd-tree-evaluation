@@ -47,12 +47,25 @@ F1 score: 2TP/(2TP+FP+FN)
 
 ### ONT
 P = `wc -l < ont.fasta.bam.bed.self.tsv` = 3117258  
-TP = `comm -12 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv` = 1360726  
-FP = `comm -23 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv` = 204942  
-FN = `comm -13 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv` = 1756532  
+TP = `comm -12 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv | wc -l` = 1360726  
+FP = `comm -23 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv | wc -l` = 204942  
+FN = `comm -13 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv | wc -l` = 1756532  
 
 ### PB
 P = `wc -l < pacbio.fasta.bam.bed.self.tsv` =   
-TP = `comm -12 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv` =   
-FP = `comm -23 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv` =   
-FN = `comm -13 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv` =   
+TP = `comm -12 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv | wc -l` = 2179694  
+FP = `comm -23 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv | wc -l` = 540605  
+FN = `comm -13 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv | wc -l` = 8905379  
+
+### Resulting table
+Compare with Table 2 in Chu *et al.*, *Bioinformatics* 2017: https://doi.org/10.1093/bioinformatics/btw811
+
+|  | PB P6-C4 E.coli ||| ONT SQK-MAP-006 E.coli |||
+|----------|-------------------------------|-----------|--------|------------------------|-----------|--------|
+|  | Sens. (%) | Prec. (%) | F1 (%) | Sens. (%) | Prec. (%) | F1 (%) |
+| BLASR | 66.0 | 96.5 | 78.3 | 89.9 | 73.0 | 80.6 |
+| DALIGNER | 83.8 | 85.8 | 84.8 | 92.9 | 91.0 | 91.9 |
+| MHAP | 79.8 | 79.8 | 79.8 | 91.2 | 82.0 | 86.3 |
+| GraphMap | 71.7 | 94.0 | 81.4 | 90.6 | 93.4 | 92.0 |
+| Minimap | 59.6 | 83.8 | 69.7 | 91.2 | 95.4 | 93.2 |
+| kd |  |  |  |  |  |  |
