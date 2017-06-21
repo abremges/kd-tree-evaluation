@@ -41,27 +41,23 @@ Again, ``ont.kd.out.tsv`` and ``pacbio.kd.out.tsv`` are tab-separated files with
 ## Compute sensitivity, precision, and F1 score
 This could (and probably should) be scripted, but we'll do it manually:
 
-Sensitivity: TP/P = TP/(TP+FN)  
-Precision: TP/(TP+FP)  
-F1 score: 2TP/(2TP+FP+FN)
-
 ### ONT
 P = `wc -l < ont.fasta.bam.bed.self.tsv` = 3117258  
 TP = `comm -12 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv | wc -l` = 1360726  
 FP = `comm -23 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv | wc -l` = 204942  
 FN = `comm -13 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv | wc -l` = 1756532  
-Sensitivity: 43.7%  
-Precision: 86.9%  
-F1 score: 58.1%  
+Sensitivity: TP/P = TP/(TP+FN) = 43.7%  
+Precision: TP/(TP+FP) = 86.9%  
+F1 score: 2TP/(2TP+FP+FN) = 58.1%  
 
 ### PB
 P = `wc -l < pacbio.fasta.bam.bed.self.tsv` = 11085073  
 TP = `comm -12 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv | wc -l` = 2179694  
 FP = `comm -23 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv | wc -l` = 540605  
 FN = `comm -13 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv | wc -l` = 8905379  
-Sensitivity: 19.7%  
-Precision: 80.1%  
-F1 score: 31.6%  
+Sensitivity: TP/P = TP/(TP+FN) = 19.7%  
+Precision: TP/(TP+FP) = 80.1%  
+F1 score: 2TP/(2TP+FP+FN) = 31.6%  
 
 ### Resulting table
 Expand Table 2 of Chu *et al.*, *Bioinformatics* 2017: https://doi.org/10.1093/bioinformatics/btw811
