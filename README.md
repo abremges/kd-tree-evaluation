@@ -76,4 +76,4 @@ Expand Table 2 of Chu *et al.*, *Bioinformatics* 2017: https://doi.org/10.1093/b
 | Minimap | 59.6 | 83.8 | 69.7 | 91.2 | 95.4 | 93.2 |
 | kd | 19.7 | 80.1 | 31.6 | 43.7 | 86.9 | 58.1 |
 
-*In summary: less sensitive (by design) but as precise.*
+**In summary: Less sensitive (by design) but as precise.**
