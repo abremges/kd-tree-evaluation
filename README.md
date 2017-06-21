@@ -38,6 +38,21 @@ for f in *.out; do awk '{if ($1!=$2) print ($1<$2) ? $1"\t"$2 : $2"\t"$1}' < $f 
 ```
 Again, ``ont.kd.out.tsv`` and ``pacbio.kd.out.tsv`` are tab-separated files with only 2 fields: ID(R1) and ID(R2); R1 and R2 are two reads that overlap, ID(R1) < ID(R2). 
 
-## Compare overlaps and generate result table
+## Compute sensitivity, precision, and F1 score
 This could (and probably should) be scripted, but we'll do it manually:
 
+Sensitivity: TP/P = TP/(TP+FN)  
+Precision: TP/(TP+FP)  
+F1 score: 2TP/(2TP+FP+FN)
+
+### ONT
+P = `wc -l < ont.fasta.bam.bed.self.tsv` = 3117258  
+TP = `comm -12 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv` = 1360726  
+FP = `comm -23 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv` = 204942  
+FN = `comm -13 ont.kd.out.tsv ont.fasta.bam.bed.self.tsv` = 1756532  
+
+### PB
+P = `wc -l < pacbio.fasta.bam.bed.self.tsv` =   
+TP = `comm -12 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv` =   
+FP = `comm -23 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv` =   
+FN = `comm -13 pacbio.kd.out.tsv pacbio.fasta.bam.bed.self.tsv` =   
