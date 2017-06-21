@@ -1,6 +1,6 @@
 # kd-tree-evaluation
 
-## Download evaluation data
+## Download and prepare evaluation data
 
 ONT data: http://lab.loman.net/2015/09/24/first-sqk-map-006-experiment/
 ```
@@ -17,7 +17,7 @@ for f in E01_1/Analysis_Results/m141013*bax.h5; do pls2fasta -trimByRegion -minS
 cat E01_1/Analysis_Results/m141013*.fasta | awk '/^>/{print ">" ++i; next}{print}' > pacbio.fasta
 ```
 
-## Generate ground truth
+## Generate reference-based ground truth
 Reference: https://www.ncbi.nlm.nih.gov/nuccore/NC_000913.2 (safe as ``reference.fasta``)
 ```
 bwa index reference.fasta
@@ -29,14 +29,15 @@ for f in *.self; do cut -f4,10 $f | awk '{if ($1!=$2) print ($1<$2) ? $1"\t"$2 :
 ```
 ``ont.fasta.bam.bed.self.tsv`` and ``pacbio.fasta.bam.bed.self.tsv`` are tab-separated files with only 2 fields: ID(R1) and ID(R2); R1 and R2 are two reads that overlap, ID(R1) < ID(R2). 
 
-## Generate overlaps
+## Generate (and parse) ``kd`` read overlaps
 Install ``kd``: https://github.com/dzif/kd-tree-overlapper
 ```
 kd -o ont.kd.out -i ont.fasta
 kd -o pacbio.kd.out -i pacbio.fasta
+for f in *.out; do awk '{if ($1!=$2) print ($1<$2) ? $1"\t"$2 : $2"\t"$1}' < $f | sort | uniq > $f.tsv; done
 ```
+Again, ``ont.kd.out.tsv`` and ``pacbio.kd.out.tsv`` are tab-separated files with only 2 fields: ID(R1) and ID(R2); R1 and R2 are two reads that overlap, ID(R1) < ID(R2). 
 
-## Parse overlap files
+## Compare overlaps and generate result table
+This could (and probably should) be scripted, but we'll do it manually:
 
-Create a TSV with 2 fields: R1 and R2 (that overlap, excluding self-overlaps, ID(R1) < ID(R2)):  
-``for f in *.out; do awk '{if ($1!=$2) print ($1<$2) ? $1"\t"$2 : $2"\t"$1}' < $f | sort | uniq > $f.tsv; done``
