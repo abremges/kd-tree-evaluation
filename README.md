@@ -60,9 +60,9 @@ Precision: TP/(TP+FP) = 80.1% (86.7%)
 F1 score: 2TP/(2TP+FP+FN) = 31.6% (60.3%)  
 
 ### Resulting table
-Expanded Table 2 of Chu *et al.*, *Bioinformatics* 2017 (https://doi.org/10.1093/bioinformatics/btw811), with rows **MHAP (default)** and **kd** added. **Summary: kd is less sensitive (by design) but as precise.**
+Expanded Table 2 of Chu *et al.*, *Bioinformatics* 2017 (https://doi.org/10.1093/bioinformatics/btw811), rows **MHAP (default)** and **kd** added. Summary: kd is less sensitive (by design) but as precise.
 
-|  | PB P6-C4 E.coli ||| ONT SQK-MAP-006 E.coli |||
+|  | PB ||| ONT |||
 |---|---|---|---|---|---|---|
 |  | Sens. (%) | Prec. (%) | F1 (%) | Sens. (%) | Prec. (%) | F1 (%) |
 | BLASR | 66.0 | 96.5 | 78.3 | 89.9 | 73.0 | 80.6 |
