@@ -18,7 +18,7 @@ cat E01_1/Analysis_Results/m141013*.fasta | awk '/^>/{print ">" ++i; next}{print
 ```
 
 ## Generate reference-based ground truth
-Reference: https://www.ncbi.nlm.nih.gov/nuccore/NC_000913.2 (safe as ``reference.fasta``)
+Reference: https://www.ncbi.nlm.nih.gov/nuccore/NC_000913.2
 ```
 bwa index reference.fasta
 bwa mem -x ont2d reference.fasta ont.fasta | samtools view -F 2048 -uT reference.fasta - | samtools sort - > ont.fasta.bam
@@ -27,7 +27,7 @@ for f in *.bam; do bedtools bamtobed -i $f > $f.bed; done
 for f in *.bed; do bedtools intersect -wo -a $f -b $f > $f.self; done
 for f in *.self; do cut -f4,10 $f | awk '{if ($1!=$2) print ($1<$2) ? $1"\t"$2 : $2"\t"$1}' | sort | uniq > $f.tsv; done
 ```
-``ont.fasta.bam.bed.self.tsv`` and ``pacbio.fasta.bam.bed.self.tsv`` are tab-separated files with only 2 fields: ID(R1) and ID(R2); R1 and R2 are two reads that overlap, ID(R1) < ID(R2). 
+``ont.fasta.bam.bed.self.tsv`` and ``pacbio.fasta.bam.bed.self.tsv`` are tab-separated files with only 2 fields: ID(R1) and ID(R2); R1 and R2 are two reads that overlap, ID(R1) < ID(R2).
 
 ## Generate (and parse) read overlaps
 Install ``kd``: https://github.com/dzif/kd-tree-overlapper
@@ -36,7 +36,7 @@ kd -o ont.kd.out -i ont.fasta
 kd -o pacbio.kd.out -i pacbio.fasta
 for f in *.kd.out; do awk '{if ($1!=$2) print ($1<$2) ? $1"\t"$2 : $2"\t"$1}' < $f | sort | uniq > $f.tsv; done
 ```
-Again, ``ont.kd.out.tsv`` and ``pacbio.kd.out.tsv`` are tab-separated files with only 2 fields: ID(R1) and ID(R2); R1 and R2 are two reads that overlap, ID(R1) < ID(R2). 
+Again, ``ont.kd.out.tsv`` and ``pacbio.kd.out.tsv`` are tab-separated files with only 2 fields: ID(R1) and ID(R2); R1 and R2 are two reads that overlap, ID(R1) < ID(R2).
 
 Install ``MHAP`` (only included to compare against): http://mhap.readthedocs.io/en/latest/quickstart.html
 ```
@@ -68,9 +68,9 @@ Precision: TP/(TP+FP) = 80.1% (86.7%)
 F1 score: 2TP/(2TP+FP+FN) = 31.6% (60.3%)  
 
 ## Summary table
-Expanded Table 2 of Chu *et al.*, *Bioinformatics* 2017 (https://doi.org/10.1093/bioinformatics/btw811), rows *MHAP (default)* and *kd* added. Summary: kd is less sensitive – by design – but as precise. An exhaustive overlap search is no requirement for a single-contig genome assembly!
+Expanded Table 2 of Chu *et al.*, *Bioinformatics* 2017 (https://doi.org/10.1093/bioinformatics/btw811), rows ``MHAP (default)`` and ``kd`` added. **Summary: kd is less sensitive – by design – but as precise.** Apparently, an exhaustive overlap search is no requirement for successful (a.k.a. single-contig) genome assembly!
 
-|  | PB ||| ONT |||
+|  | PB |  |  | ONT |  |  |
 |---|---|---|---|---|---|---|
 |  | Sens. (%) | Prec. (%) | F1 (%) | Sens. (%) | Prec. (%) | F1 (%) |
 | BLASR | 66.0 | 96.5 | 78.3 | 89.9 | 73.0 | 80.6 |
